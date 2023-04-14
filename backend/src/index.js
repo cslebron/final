@@ -9,7 +9,11 @@ import { prisma } from "./adapters";
 
 const app = express();
 app.use(express.static(frontendDir));
+
+app.use(express.json());
+
 app.use(rootRouter);
+
 //app.get("/", (req, res) => { res.send("Hello World!"); });
 
 app.get("*", (req, res) => { // Keep as the last route

@@ -3,7 +3,6 @@ import { glob } from "glob";
 
 
 const rootRouter = express.Router();
-
 async function autoloadRoutes() {
     const jsfiles = await glob("**/index.js", {
         cwd: "src/routes",

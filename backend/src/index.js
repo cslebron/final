@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const frontendDir = path.join(__dirname, "../../frontend/dist");
 import rootRouter from "./routes";
+import { prisma } from "./adapters";
 
 const app = express();
 app.use(express.static(frontendDir));
@@ -21,3 +22,6 @@ app.get("*", (req, res) => { // Keep as the last route
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
+process.on("exit", async () => {
+    await prisma.$disconnect();
+}); 
